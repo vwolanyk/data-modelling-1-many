@@ -1,0 +1,57 @@
+Modelling for DATA
+
+1.  SELECT title FROM articles WHERE author_id = (SELECT id FROM authors WHERE name = 'Kara Melton');
+    RETURNS:  How Tech Business Models Come From Marginalized Communities, 
+              But Startups Are Still Mostly White
+              Confronting the Assumption of Whiteness in Virtual Spaces
+              
+2.  SELECT name FROM cities WHERE province_id = (SELECT id FROM provinces WHERE name = 'Ontario');
+
+    RETURNS:  TORONTO and OTTAWA
+
+3. SELECT name FROM authors WHERE id = (SELECT author_id FROM articles WHERE title = 'Coding Bootcamps and Emotional Labor');
+               name        
+        -------------------
+         Tilde Ann Thurium
+
+4. SELECT COUNT(country_id) FROM provinces WHERE country_id = (SELECT id FROM countries WHERE name = 'Canada');
+           count 
+          -------
+              14
+
+5.  SELECT COUNT(residence_id) FROM persons WHERE residence_id = (SELECT id FROM residences WHERE address = '4740 McDermott Street');
+           count 
+          -------
+               2
+
+6. SELECT name FROM cities WHERE id = (SELECT city_id FROM residences WHERE address = '4740 McDermott Street');
+      name  
+    --------
+     Ottawa
+     
+7. SELECT name FROM provinces WHERE id = (SELECT province_id FROM cities WHERE id = (SELECT city_id FROM residences WHERE address = '4740 McDermott Street'));
+      name   
+    ---------
+     Ontario
+
+8.  SELECT name FROM countries WHERE id = (SELECT country_id  FROM provinces WHERE id = (SELECT province_id FROM cities WHERE id = (SELECT city_id FROM residences WHERE address = '4740 McDermott Street')));
+
+        name  
+      --------
+       Canada
+
+9 . SELECT name FROM countries WHERE id = (SELECT country_id  FROM provinces WHERE id = (SELECT province_id FROM cities WHERE id = (SELECT city_id FROM residences WHERE id = (SELECT residence_id FROM persons WHERE name = 'Destini Davis'))));
+          name  
+        --------
+         Canada
+
+10. SELECT COUNT(author_id) FROM articles WHERE id = (SELECT id FROM authors WHERE name = 'Aditya Mukerjee');
+       count 
+      -------
+           1
+           
+----- THE END ------           
+
+
+               
+
